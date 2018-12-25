@@ -53,6 +53,8 @@ static const int64_t COIN_YEAR_REWARD = 1000 * CENT;
 static const int LAST_POW_BLOCK_V1 = 10000;
 /** PoW re-enable toggle */
 static const int POW_RE_ENABLE = 0;
+/** Swap Subsidy Clamp */
+static const int64_t SWAP_CLAMP = 1548849600;
 /** Mainnet Gen. Hash */
 static const uint256 hashGenesisBlock("0x000006439011b54102e4d779a544e69ccbc78ab87ad0953eb09e9cf725a2f765");
 /** Testnet Gen. Hash */

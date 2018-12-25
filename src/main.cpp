@@ -998,7 +998,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
     return pblockOrphan->hashPrevBlock;
 }
 
-// miner's coin base reward
+// Miner's coin base reward
 int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
 {
 
@@ -1006,41 +1006,35 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
 			
             if(nBestHeight == 0)
             {
-            nSubsidy = 100000 * COIN; //premine for Swap
+            nSubsidy = 100000 * COIN; // Premine for Swap
 			}
-            else if(nBestHeight <= 50000) //Only mining fee
+            else if(nBestHeight <= 50000) // Only mining fee
             {
             nSubsidy = 0 * COIN;
             }
-
             else if(nBestHeight <= 100000)
             {
             nSubsidy = 25 * COIN;
             }
-
             else if(nBestHeight <= 150000)
             {
             nSubsidy = 15 * COIN;
             }
-			
-			    else if(nBestHeight <= 200000)
+            else if(nBestHeight <= 200000)
             {
             nSubsidy = 10 * COIN;
             }
-			
-			    else if(nBestHeight <= 250000)
+            else if(nBestHeight <= 250000)
             {
             nSubsidy = 5 * COIN;
             }
-			
-				    else if(nBestHeight <= 500000)
+            else if(nBestHeight <= 500000)
             {
             nSubsidy = 1 * COIN;
             }
-			
-			 else
+            else
             {
-            nSubsidy = nSubsidy; //Only mining fee
+            nSubsidy = nSubsidy; // Only mining fee
             }
 
 			 
@@ -1056,131 +1050,109 @@ int64_t GetProofOfStakeReward(int nHeight, int64_t nCoinAge, int64_t nFees)
 {
     int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
 
-	
-	
-	
-	
-	
-                 if(nBestHeight <= 10000) 
+    if(pindexBest->GetBlockTime() < SWAP_CLAMP)
+    {
+            if(nBestHeight <= 10000)
             {
-            	 nSubsidy >>= nSubsidy /100000;  //no substantial pos reward until block 10k
+                 nSubsidy >>= nSubsidy /100000;  // no substantial pos reward until block 10k
             }
 			else if(nBestHeight <= 15000)
 			 {
-				 nSubsidy = nSubsidy * 35 ;  //35000% MAX ROI%
+                 nSubsidy = nSubsidy * 35 ;  // 35000% MAX ROI%
 			 }
-			 
-			     else if(nBestHeight <= 24000)
+             else if(nBestHeight <= 24000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000% 
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			     else if(nBestHeight <= 30000)
+             else if(nBestHeight <= 30000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			     else if(nBestHeight <= 35000)
+             else if(nBestHeight <= 35000)
 			 {
-				 nSubsidy = nSubsidy * 1 ;  //1000% 
+                 nSubsidy = nSubsidy * 1 ;  // 1000%
 			 }
-			 
-			     else if(nBestHeight <= 40000)
+             else if(nBestHeight <= 40000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			     else if(nBestHeight <= 45000)
+             else if(nBestHeight <= 45000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000%
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			 	     else if(nBestHeight <= 48000)
+             else if(nBestHeight <= 48000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000% SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000% SUPERBLOCKS
 			 }
-			 
-			     else if(nBestHeight <= 60000)
+             else if(nBestHeight <= 60000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000% 
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			     else if(nBestHeight <= 65000)
+             else if(nBestHeight <= 65000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			   else if(nBestHeight <= 70000)
+             else if(nBestHeight <= 70000)
 			 {
-				 nSubsidy = nSubsidy * 6 ;  //6000% 
+                 nSubsidy = nSubsidy * 6 ;  // 6000%
 			 }
-			    else if(nBestHeight <= 73000)
+             else if(nBestHeight <= 73000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000%  SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000%  SUPERBLOCKS
 			 }
-			 
-			    else if(nBestHeight <= 100000)
+             else if(nBestHeight <= 100000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			    else if(nBestHeight <= 150000)
+             else if(nBestHeight <= 150000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000% 
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			    else if(nBestHeight <= 151000)
+             else if(nBestHeight <= 151000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000% SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000% SUPERBLOCKS
 			 }
-			 
-			    else if(nBestHeight <= 200000)
+             else if(nBestHeight <= 200000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			 	   else if(nBestHeight <= 225000)
+             else if(nBestHeight <= 225000)
 			 {
-				 nSubsidy = nSubsidy * 6 ;  //6000% 
+                 nSubsidy = nSubsidy * 6 ;  // 6000%
 			 }
-			 
-			  	   else if(nBestHeight <= 300000)
+              else if(nBestHeight <= 300000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			 	  	   else if(nBestHeight <= 350000)
+             else if(nBestHeight <= 350000)
 			 {
-				 nSubsidy = nSubsidy * 1 ;  //1000% 
-			 }
-			 
-			  	  	   else if(nBestHeight <= 400000)
+                 nSubsidy = nSubsidy * 1 ;  // 1000%
+			 } 
+             else if(nBestHeight <= 400000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			  	  	   else if(nBestHeight <= 450000)
+             else if(nBestHeight <= 450000)
 			 {
-				 nSubsidy = nSubsidy * 6 ;  //6000% 
+                 nSubsidy = nSubsidy * 6 ;  // 6000%
 			 }
-			 	  	   else if(nBestHeight <= 455000)
+             else if(nBestHeight <= 455000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000%  SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000%  SUPERBLOCKS
 			 }
-			 
-			 	 	  	   else if(nBestHeight <= 600000)
+             else if(nBestHeight <= 600000)
 			 {
-				 nSubsidy = nSubsidy * 2 ;  //2000%
+                 nSubsidy = nSubsidy * 2 ;  // 2000%
 			 }
-			
-			
-
-			   else
+             else
 			{
-			 nSubsidy = nSubsidy * 0.2 ;  //200%
+             nSubsidy = nSubsidy * 0.2 ;  // 200%
 			}
-
-			
+     }
+    else if(pindexBest->GetBlockTime() >= SWAP_CLAMP)
+    {
+             nSubsidy = 1 * COIN; // One coin per block during and after the swap
+    }
 			
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%" PRId64"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);

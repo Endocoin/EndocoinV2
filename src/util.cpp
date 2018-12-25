@@ -991,7 +991,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Unix: ~/.endocoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "endocoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "endocoinV2";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
