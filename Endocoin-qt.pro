@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = Endocoin-qt
-VERSION = 2.2.5.0
+VERSION = 2.5.0.0
 INCLUDEPATH += src src/json src/qt
 QT += core gui widgets network
 DEFINES += ENABLE_WALLET

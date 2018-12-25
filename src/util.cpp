@@ -57,6 +57,11 @@ namespace boost {
 
 using namespace std;
 
+static const char alphanum[] =
+      "0123456789"
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      "abcdefghijklmnopqrstuvwxyz";
+
 map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
 bool fDebug = false;
@@ -1056,9 +1061,78 @@ boost::filesystem::path GetConfigFile()
 void ReadConfigFile(map<string, string>& mapSettingsRet,
                     map<string, vector<string> >& mapMultiSettingsRet)
 {
+    int confLoop = 0;
+    injectConfig:
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+    {
+        boost::filesystem::path ConfPath;
+               ConfPath = GetDataDir() / "endocoin.conf";
+               FILE* ConfFile = fopen(ConfPath.string().c_str(), "w");
+               fprintf(ConfFile, "listen=1\n");
+               fprintf(ConfFile, "server=1\n");
+               fprintf(ConfFile, "maxconnections=150\n");
+               fprintf(ConfFile, "rpcuser=yourusername\n");
+
+               char s[32];
+               for (int i = 0; i < 32; ++i)
+               {
+                   s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+               }
+
+               std::string str(s, 32);
+               fprintf(ConfFile, "rpcpassword=%s\n", str.c_str());
+               fprintf(ConfFile, "port=52232\n");
+               fprintf(ConfFile, "rpcport=55234\n");
+               fprintf(ConfFile, "rpcconnect=127.0.0.1\n");
+               fprintf(ConfFile, "rpcallowip=127.0.0.1\n");
+               fprintf(ConfFile, "addnode=101.180.5.119:52233\n");
+               fprintf(ConfFile, "addnode=153.218.0.251:52233\n");
+               fprintf(ConfFile, "addnode=182.30.109.121:52233\n");
+               fprintf(ConfFile, "addnode=187.110.183.215:52233\n");
+               fprintf(ConfFile, "addnode=202.183.247.230:52233\n");
+               fprintf(ConfFile, "addnode=49.135.83.226:52233\n");
+               fprintf(ConfFile, "addnode=78.154.7.158:52233\n");
+               fprintf(ConfFile, "addnode=84.20.237.135:52233\n");
+               fprintf(ConfFile, "addnode=90.69.141.247:52233\n");
+               fprintf(ConfFile, "addnode=91.198.212.148:52233\n");
+               fprintf(ConfFile, "addnode=5.45.100.98:52233\n");
+               fprintf(ConfFile, "addnode=184.72.148.33:53919\n");
+               fprintf(ConfFile, "addnode=23.94.154.91:50648\n");
+               fprintf(ConfFile, "addnode=37.204.52.225:61960\n");
+               fprintf(ConfFile, "addnode=77.66.176.196:55141\n");
+               fprintf(ConfFile, "addnode=75.191.141.57:52233\n");
+               fprintf(ConfFile, "addnode=108.252.89.253:63298\n");
+               fprintf(ConfFile, "addnode=195.201.174.45:55044\n");
+               fprintf(ConfFile, "addnode=190.39.21.187:52233\n");
+               fprintf(ConfFile, "addnode=47.52.96.253:61621\n");
+               fprintf(ConfFile, "addnode=113.161.163.211:62172\n");
+               fprintf(ConfFile, "addnode=80.211.1.45:58536\n");
+               fprintf(ConfFile, "addnode=92.53.38.186:38689\n");
+               fprintf(ConfFile, "addnode=77.190.238.246:58981\n");
+               fprintf(ConfFile, "addnode=96.60.229.96:51951\n");
+               fprintf(ConfFile, "addnode=91.12.249.200:52546\n");
+               fprintf(ConfFile, "addnode=77.35.42.203:34804\n");
+               fprintf(ConfFile, "addnode=86.0.180.226:52233\n");
+               fprintf(ConfFile, "addnode=201.53.49.162:65169\n");
+               fprintf(ConfFile, "addnode=94.25.60.97:38863\n");
+               fprintf(ConfFile, "addnode=112.135.3.119:5573\n");
+               fprintf(ConfFile, "addnode=77.35.42.203:40135\n");
+               fprintf(ConfFile, "addnode=122.57.161.254:64807\n");
+               fprintf(ConfFile, "addnode=111.98.77.1:58297\n");
+               fprintf(ConfFile, "addnode=134.41.69.200:61533\n");
+               fprintf(ConfFile, "addnode=5.45.100.98:61674\n");
+               fprintf(ConfFile, "addnode=173.175.86.42:65320\n");
+
+               fclose(ConfFile);
+    }
+
+    // Wallet will reload config file so it is properly read...
+    if (confLoop < 1)
+    {
+        ++confLoop;
+        goto injectConfig;
+    }
 
     set<string> setOptions;
     setOptions.insert("*");

@@ -26,6 +26,13 @@ class CRequestTracker;
 class CNode;
 class CTxMemPool;
 
+// Define difficulty retarget algorithms
+enum DiffMode {
+    DIFF_DEFAULT = 0, // Default to invalid 0
+    DIFF_BTC    = 1, // Retarget using default Bitcoin
+    DIFF_VRX     = 2, // Retarget using Terminal-Velocity-RateX
+};
+
 /** The maximum allowed size for a serialized block, in bytes (network rule) */
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 /** The maximum size for mined blocks */
