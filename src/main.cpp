@@ -998,7 +998,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
     return pblockOrphan->hashPrevBlock;
 }
 
-// miner's coin base reward
+// Miner's coin base reward
 int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
 {
 
@@ -1006,41 +1006,35 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
 			
             if(nBestHeight == 0)
             {
-            nSubsidy = 100000 * COIN; //premine for Swap
+            nSubsidy = 100000 * COIN; // Premine for Swap
 			}
-            else if(nBestHeight <= 50000) //Only mining fee
+            else if(nBestHeight <= 50000) // Only mining fee
             {
             nSubsidy = 0 * COIN;
             }
-
             else if(nBestHeight <= 100000)
             {
             nSubsidy = 25 * COIN;
             }
-
             else if(nBestHeight <= 150000)
             {
             nSubsidy = 15 * COIN;
             }
-			
-			    else if(nBestHeight <= 200000)
+            else if(nBestHeight <= 200000)
             {
             nSubsidy = 10 * COIN;
             }
-			
-			    else if(nBestHeight <= 250000)
+            else if(nBestHeight <= 250000)
             {
             nSubsidy = 5 * COIN;
             }
-			
-				    else if(nBestHeight <= 500000)
+            else if(nBestHeight <= 500000)
             {
             nSubsidy = 1 * COIN;
             }
-			
-			 else
+            else
             {
-            nSubsidy = nSubsidy; //Only mining fee
+            nSubsidy = nSubsidy; // Only mining fee
             }
 
 			 
@@ -1056,131 +1050,109 @@ int64_t GetProofOfStakeReward(int nHeight, int64_t nCoinAge, int64_t nFees)
 {
     int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
 
-	
-	
-	
-	
-	
-                 if(nBestHeight <= 10000) 
+    if(pindexBest->GetBlockTime() < SWAP_CLAMP)
+    {
+            if(nBestHeight <= 10000)
             {
-            	 nSubsidy >>= nSubsidy /100000;  //no substantial pos reward until block 10k
+                 nSubsidy >>= nSubsidy /100000;  // no substantial pos reward until block 10k
             }
 			else if(nBestHeight <= 15000)
 			 {
-				 nSubsidy = nSubsidy * 35 ;  //35000% MAX ROI%
+                 nSubsidy = nSubsidy * 35 ;  // 35000% MAX ROI%
 			 }
-			 
-			     else if(nBestHeight <= 24000)
+             else if(nBestHeight <= 24000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000% 
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			     else if(nBestHeight <= 30000)
+             else if(nBestHeight <= 30000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			     else if(nBestHeight <= 35000)
+             else if(nBestHeight <= 35000)
 			 {
-				 nSubsidy = nSubsidy * 1 ;  //1000% 
+                 nSubsidy = nSubsidy * 1 ;  // 1000%
 			 }
-			 
-			     else if(nBestHeight <= 40000)
+             else if(nBestHeight <= 40000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			     else if(nBestHeight <= 45000)
+             else if(nBestHeight <= 45000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000%
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			 	     else if(nBestHeight <= 48000)
+             else if(nBestHeight <= 48000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000% SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000% SUPERBLOCKS
 			 }
-			 
-			     else if(nBestHeight <= 60000)
+             else if(nBestHeight <= 60000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000% 
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			     else if(nBestHeight <= 65000)
+             else if(nBestHeight <= 65000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			   else if(nBestHeight <= 70000)
+             else if(nBestHeight <= 70000)
 			 {
-				 nSubsidy = nSubsidy * 6 ;  //6000% 
+                 nSubsidy = nSubsidy * 6 ;  // 6000%
 			 }
-			    else if(nBestHeight <= 73000)
+             else if(nBestHeight <= 73000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000%  SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000%  SUPERBLOCKS
 			 }
-			 
-			    else if(nBestHeight <= 100000)
+             else if(nBestHeight <= 100000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			    else if(nBestHeight <= 150000)
+             else if(nBestHeight <= 150000)
 			 {
-				 nSubsidy = nSubsidy * 5 ;  //5000% 
+                 nSubsidy = nSubsidy * 5 ;  // 5000%
 			 }
-			 
-			    else if(nBestHeight <= 151000)
+             else if(nBestHeight <= 151000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000% SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000% SUPERBLOCKS
 			 }
-			 
-			    else if(nBestHeight <= 200000)
+             else if(nBestHeight <= 200000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			 	   else if(nBestHeight <= 225000)
+             else if(nBestHeight <= 225000)
 			 {
-				 nSubsidy = nSubsidy * 6 ;  //6000% 
+                 nSubsidy = nSubsidy * 6 ;  // 6000%
 			 }
-			 
-			  	   else if(nBestHeight <= 300000)
+              else if(nBestHeight <= 300000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			 	  	   else if(nBestHeight <= 350000)
+             else if(nBestHeight <= 350000)
 			 {
-				 nSubsidy = nSubsidy * 1 ;  //1000% 
-			 }
-			 
-			  	  	   else if(nBestHeight <= 400000)
+                 nSubsidy = nSubsidy * 1 ;  // 1000%
+			 } 
+             else if(nBestHeight <= 400000)
 			 {
-				 nSubsidy = nSubsidy * 3 ;  //3000% 
+                 nSubsidy = nSubsidy * 3 ;  // 3000%
 			 }
-			 
-			  	  	   else if(nBestHeight <= 450000)
+             else if(nBestHeight <= 450000)
 			 {
-				 nSubsidy = nSubsidy * 6 ;  //6000% 
+                 nSubsidy = nSubsidy * 6 ;  // 6000%
 			 }
-			 	  	   else if(nBestHeight <= 455000)
+             else if(nBestHeight <= 455000)
 			 {
-				 nSubsidy = nSubsidy * 10 ;  //10000%  SUPERBLOCKS
+                 nSubsidy = nSubsidy * 10 ;  // 10000%  SUPERBLOCKS
 			 }
-			 
-			 	 	  	   else if(nBestHeight <= 600000)
+             else if(nBestHeight <= 600000)
 			 {
-				 nSubsidy = nSubsidy * 2 ;  //2000%
+                 nSubsidy = nSubsidy * 2 ;  // 2000%
 			 }
-			
-			
-
-			   else
+             else
 			{
-			 nSubsidy = nSubsidy * 0.2 ;  //200%
+             nSubsidy = nSubsidy * 0.2 ;  // 200%
 			}
-
-			
+     }
+    else if(pindexBest->GetBlockTime() >= SWAP_CLAMP)
+    {
+             nSubsidy = 1 * COIN; // One coin per block during and after the swap
+    }
 			
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%" PRId64"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);
@@ -1239,7 +1211,118 @@ const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSta
     return pindex;
 }
 
-static unsigned int GetNextTargetRequiredV1(const CBlockIndex* pindexLast, bool fProofOfStake)
+unsigned int Terminal_Velocity_RateX(const CBlockIndex* pindexLast, bool fProofOfStake)
+{
+       // Terminal-Velocity-RateX, v10-Beta-R7.1 (Pure PoS), written by Jonathan Dan Zaretsky - cryptocoderz@gmail.com
+       const CBigNum bnTerminalVelocity = fProofOfStake ? bnProofOfStakeLimit : bnProofOfWorkLimit;
+       // Define values
+       double VLF1 = 0;
+       double VLF2 = 0;
+       double VLF3 = 0;
+       double VLF4 = 0;
+       double VLF5 = 0;
+       double VLFtmp = 0;
+       double VRFsm1 = 1;
+       double VRFdw1 = 0.75;
+       double VRFdw2 = 0.5;
+       double VRFup1 = 1.25;
+       double VRFup2 = 1.5;
+       double VRFup3 = 2;
+       double TerminalAverage = 0;
+       double TerminalFactor = 10000;
+       int64_t VLrate1 = 0;
+       int64_t VLrate2 = 0;
+       int64_t VLrate3 = 0;
+       int64_t VLrate4 = 0;
+       int64_t VLrate5 = 0;
+       int64_t VLRtemp = 0;
+       int64_t DSrateNRM = 3 * 60;
+       int64_t DSrateMAX = DSrateNRM + (1 * 60);
+       int64_t FRrateDWN = DSrateNRM - 60;
+       int64_t FRrateFLR = DSrateNRM - 90;
+       int64_t FRrateCLNG = DSrateNRM * 2;
+       int64_t difficultyfactor = 0;
+       int64_t AverageDivisor = 5;
+       int64_t scanheight = 6;
+       int64_t scanblocks = 1;
+       int64_t scantime_1 = 0;
+       int64_t scantime_2 = pindexLast->GetBlockTime();
+       // Check for blocks to index | Allowing for initial chain start
+       if (pindexLast->GetBlockTime() < SWAP_CLAMP)
+           return bnTerminalVelocity.GetCompact(); // can't index prevblock
+       // Set prev blocks...
+       const CBlockIndex* pindexPrev = pindexLast;
+       // ...and deduce spacing
+       while(scanblocks < scanheight)
+       {
+           scantime_1 = scantime_2;
+           pindexPrev = pindexPrev->pprev;
+           scantime_2 = pindexPrev->GetBlockTime();
+           // Set standard values
+           if(scanblocks > 0){
+               if     (scanblocks < scanheight-4){ VLrate1 = (scantime_1 - scantime_2); VLRtemp = VLrate1; }
+               else if(scanblocks < scanheight-3){ VLrate2 = (scantime_1 - scantime_2); VLRtemp = VLrate2; }
+               else if(scanblocks < scanheight-2){ VLrate3 = (scantime_1 - scantime_2); VLRtemp = VLrate3; }
+               else if(scanblocks < scanheight-1){ VLrate4 = (scantime_1 - scantime_2); VLRtemp = VLrate4; }
+               else if(scanblocks < scanheight-0){ VLrate5 = (scantime_1 - scantime_2); VLRtemp = VLrate5; }
+           }
+           // Round factoring
+           if(VLRtemp >= DSrateNRM){ VLFtmp = VRFsm1;
+               if(VLRtemp > DSrateMAX){ VLFtmp = VRFdw1;
+                   if(VLRtemp > FRrateCLNG){ VLFtmp = VRFdw2; }
+               }
+           }
+           else if(VLRtemp < DSrateNRM){ VLFtmp = VRFup1;
+               if(VLRtemp < FRrateDWN){ VLFtmp = VRFup2;
+                   if(VLRtemp < FRrateFLR){ VLFtmp = VRFup3; }
+               }
+           }
+           // Record factoring
+           if      (scanblocks < scanheight-4) VLF1 = VLFtmp;
+           else if (scanblocks < scanheight-3) VLF2 = VLFtmp;
+           else if (scanblocks < scanheight-2) VLF3 = VLFtmp;
+           else if (scanblocks < scanheight-1) VLF4 = VLFtmp;
+           else if (scanblocks < scanheight-0) VLF5 = VLFtmp;
+           // move up per scan round
+           scanblocks ++;
+       }
+       // Final mathematics
+       TerminalAverage = (VLF1 + VLF2 + VLF3 + VLF4 + VLF5) / AverageDivisor;
+       // Differentiate PoW/PoS prev block
+       const CBlockIndex* BlockVelocityType = GetLastBlockIndex(pindexLast, fProofOfStake);
+       // Retarget
+       CBigNum bnOld;
+       CBigNum bnNew;
+       TerminalFactor *= TerminalAverage;
+       difficultyfactor = TerminalFactor;
+       bnOld.SetCompact(BlockVelocityType->nBits);
+       bnNew = bnOld / difficultyfactor;
+       bnNew *= 10000;
+       // Limit
+       if (bnNew > bnTerminalVelocity)
+         bnNew = bnTerminalVelocity;
+       // Print for debugging
+       if(fDebug) {
+           printf("Terminal-Velocity 1st spacing: %u: \n",VLrate1);
+           printf("Terminal-Velocity 2nd spacing: %u: \n",VLrate2);
+           printf("Terminal-Velocity 3rd spacing: %u: \n",VLrate3);
+           printf("Terminal-Velocity 4th spacing: %u: \n",VLrate4);
+           printf("Terminal-Velocity 5th spacing: %u: \n",VLrate5);
+           printf("Desired normal spacing: %u: \n",DSrateNRM);
+           printf("Desired maximum spacing: %u: \n",DSrateMAX);
+           printf("Terminal-Velocity 1st multiplier set to: %f: \n",VLF1);
+           printf("Terminal-Velocity 2nd multiplier set to: %f: \n",VLF2);
+           printf("Terminal-Velocity 3rd multiplier set to: %f: \n",VLF3);
+           printf("Terminal-Velocity 4th multiplier set to: %f: \n",VLF4);
+           printf("Terminal-Velocity 5th multiplier set to: %f: \n",VLF5);
+           printf("Terminal-Velocity averaged a final multiplier of: %f: \n",TerminalAverage);
+           printf("Prior Terminal-Velocity: %08x  %s\n", BlockVelocityType->nBits, bnOld.ToString());
+           printf("New Terminal-Velocity:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
+       }
+       return bnNew.GetCompact();
+}
+
+static unsigned int BTC_Retarget_V1(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
     CBigNum bnTargetLimit = fProofOfStake ? bnProofOfStakeLimit : bnProofOfWorkLimit;
 
@@ -1269,7 +1352,7 @@ static unsigned int GetNextTargetRequiredV1(const CBlockIndex* pindexLast, bool 
     return bnNew.GetCompact();
 }
 
-static unsigned int GetNextTargetRequiredV2(const CBlockIndex* pindexLast, bool fProofOfStake)
+static unsigned int BTC_Retarget_V2(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
 
     if (pindexBest->nHeight+1 >= 40000)
@@ -1313,10 +1396,21 @@ static unsigned int GetNextTargetRequiredV2(const CBlockIndex* pindexLast, bool 
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
-    if (pindexLast->nHeight < 10000)
-        return GetNextTargetRequiredV1(pindexLast, fProofOfStake);
+    // Default with VRX
+    unsigned int retarget = DIFF_VRX;
+    // Allow BTC retarget before swap
+    if(pindexLast->GetBlockTime() < SWAP_CLAMP)
+        retarget = DIFF_BTC;
+    // Check selection
+    if (retarget != DIFF_VRX)
+    {
+        if (pindexLast->nHeight < 10000)
+            return BTC_Retarget_V1(pindexLast, fProofOfStake);
+        else
+            return BTC_Retarget_V2(pindexLast, fProofOfStake);
+    }
     else
-        return GetNextTargetRequiredV2(pindexLast, fProofOfStake);
+        return Terminal_Velocity_RateX(pindexLast, fProofOfStake);
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)
@@ -3038,15 +3132,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < (GetAdjustedTime() > FORK_TIME ? MIN_PROTO_VERSION_FORK : MIN_PROTO_VERSION))
-        {
-            // disconnect from peers older than this proto version
-            printf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
-            pfrom->fDisconnect = true;
-            return false;
-        }
-
-        if (pfrom->nVersion < (GetAdjustedTime() > FORK_TIME_2 ? MIN_PROTO_VERSION_FORK_2 : MIN_PROTO_VERSION))
+        if (pfrom->nVersion < (MIN_PROTO_VERSION))
         {
             // disconnect from peers older than this proto version
             printf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
@@ -3123,7 +3209,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         static int nAskedForBlocks = 0;
         if (!pfrom->fClient && !pfrom->fOneShot &&
             (pfrom->nStartingHeight > (nBestHeight - 144)) &&
-            (pfrom->nVersion < NOBLKS_VERSION_START || pfrom->nVersion > (GetAdjustedTime() > FORK_TIME_2 ? NOBLKS_VERSION_END_FORK_2 : NOBLKS_VERSION_END)) &&
+            (pfrom->nVersion < NOBLKS_VERSION_START || pfrom->nVersion > (NOBLKS_VERSION_END)) &&
             (nAskedForBlocks < 1 || vNodes.size() <= 1))
         {
             nAskedForBlocks++;

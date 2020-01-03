@@ -20,20 +20,18 @@ class CBlockIndex;
 class CKeyItem;
 class CReserveKey;
 class COutPoint;
-
 class CAddress;
 class CInv;
 class CRequestTracker;
 class CNode;
-
 class CTxMemPool;
 
-static const int LAST_POW_BLOCK_V1 = 10000;
-static const int POW_RE_ENABLE = 0;
-// static const int LAST_POW_BLOCK = 9999999999;
-
-static const unsigned int FORK_TIME = 1508493860;
-static const unsigned int FORK_TIME_2 = 1508493860;
+// Define difficulty retarget algorithms
+enum DiffMode {
+    DIFF_DEFAULT = 0, // Default to invalid 0
+    DIFF_BTC    = 1, // Retarget using default Bitcoin
+    DIFF_VRX     = 2, // Retarget using Terminal-Velocity-RateX
+};
 
 /** The maximum allowed size for a serialized block, in bytes (network rule) */
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
@@ -56,13 +54,21 @@ static const int64_t MAX_MONEY = 50000000000 * COIN;
 inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 /** Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp. */
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
-
+/** PoS coin subsidy */
 static const int64_t COIN_YEAR_REWARD = 1000 * CENT;
-
+/** PoW Last block */
+static const int LAST_POW_BLOCK_V1 = 10000;
+/** PoW re-enable toggle */
+static const int POW_RE_ENABLE = 0;
+/** Swap Subsidy Clamp */
+static const int64_t SWAP_CLAMP = 1548849600;
+/** Mainnet Gen. Hash */
 static const uint256 hashGenesisBlock("0x000006439011b54102e4d779a544e69ccbc78ab87ad0953eb09e9cf725a2f765");
+/** Testnet Gen. Hash */
 static const uint256 hashGenesisBlockTestNet("0x000006439011b54102e4d779a544e69ccbc78ab87ad0953eb09e9cf725a2f765");
-
+/** Pastdrift window */
 inline int64_t PastDrift(int64_t nTime)   { return nTime - 10 * 60; } // up to 10 minutes from the past
+/** Future drift window */
 inline int64_t FutureDrift(int64_t nTime) { return nTime + 10 * 60; } // up to 10 minutes from the future
 
 extern libzerocoin::Params* ZCParams;
